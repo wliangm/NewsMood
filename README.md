@@ -33,8 +33,7 @@ api = tweepy.API(auth, parser=tweepy.parsers.JSONParser())
 # Target Account
 target_user = ["@BBC","@CBS","@CNN","@FoxNews","@nytimes"]
 
-# Counter
-counter = 1
+
 
 # Variables for holding sentiments, this is for first api call only
 sentiments = []
@@ -44,6 +43,8 @@ sentiments = []
 
 for x_target_user in target_user:
     
+# Counter
+    counter = 1
 
 # Loop through 5 pages of tweets (total 100 tweets)
     for x in range(5):
@@ -65,8 +66,8 @@ for x_target_user in target_user:
             neg = results["neg"]
             tweets_ago = counter
 
-                # Get Tweet ID, subtract 1, and assign to oldest_tweet
-            oldest_tweet = tweet['id'] - 1
+            # Get Tweet ID, subtract 1, and assign to oldest_tweet
+            #oldest_tweet = tweet['id'] - 1
 
                 # Add sentiments for each tweet into a list
             sentiments.append({"News_Org": tweet["user"]["name"],
@@ -408,17 +409,17 @@ overall_sentiment_pd
     <tr>
       <th>2</th>
       <td>CNN</td>
-      <td>-0.022970</td>
+      <td>-0.078815</td>
     </tr>
     <tr>
       <th>3</th>
       <td>Fox News</td>
-      <td>-0.021545</td>
+      <td>-0.042125</td>
     </tr>
     <tr>
       <th>4</th>
       <td>The New York Times</td>
-      <td>-0.052095</td>
+      <td>-0.122535</td>
     </tr>
   </tbody>
 </table>
@@ -451,8 +452,10 @@ plt.show()
 
 # Twitter Media Analysis:
 
-1 - Based on the latest 100 tweets per media, CNN and FoxNews tweets are the most neutral compared to other news organizations such as BBC, CNN and The NY Times with average sentiment score of -0.022970 and -0.021545, which represents the least political attitudes or polarization. In contrast, CBS's tweets have the most positive polarity with 0.346960 sentiment scores.
+1 - Based on the latest 100 tweets per media, FoxNews tweets are the most neutral compared to other news organizations such as BBC, CNN, CBS and The NY Times with average sentiment score of -0.042125, which represents the least political attitudes or polarization. In contrast, CBS's tweets have the most positive polarity with 0.346960 sentiment scores.
 
 2 - Based on the scatter plot, the polarity of the tweets sent by each media organization are up and down except CBS's tweets that are positive most of the times.  
 
 3 - Based on each sentiment analysis, the tweets that get sent by each organization have similar behavior. Media organization are sending either positive or negative tweets to attrack attention from the audience, but between few positive/negative tweets there's always some tweets are neutral and acts as "break-point" that pause the positive/negative tweets for short period time.
+
+(note: tweets sentiments change from time to time depending on media's preference. In this exercise, the data and sentiment result change everytime the codes got ran) 
